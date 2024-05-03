@@ -53,6 +53,13 @@ public class SwiftFlutterBranchSdkPlugin: NSObject, FlutterPlugin, FlutterStream
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable : Any] = [:]) -> Bool {
         initialLaunchOptions = launchOptions
+
+        Branch.getInstance().registerPluginName(PLUGIN_NAME, version: PLUGIN_VERSION);
+        
+        if #available(iOS 15.0, *) {
+            Branch.getInstance().checkPasteboardOnInstall()
+        }
+        
         return true
     }
     
